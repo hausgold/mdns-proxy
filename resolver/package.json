@@ -1,0 +1,19 @@
+{
+  "name": "resolver",
+  "version": "1.0.0",
+  "description": "Do what Avahi can't inside a Docker container",
+  "main": "resolver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node resolver.js"
+  },
+  "keywords": [
+    "mdns",
+    "avahi",
+    "docker"
+  ],
+  "author": "Hermann Mayer <hermann.mayer@hausgold.de>",
+  "dependencies": {
+    "dnsd": "^0.9.6"
+  }
+}
