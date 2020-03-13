@@ -47,6 +47,8 @@ ruby:
     # These root path entries will be upgraded to WebSocket
     # connections transparently. The following list is the default.
     - WEBSOCKET_PATHS='cable|sockjs-node|livereload|ws'
+    # Change the maximum upload size per request
+    - MAX_UPLOAD_SIZE='20m'
   ports:
     # The port to listen on for requests on the host
     - "80:80"

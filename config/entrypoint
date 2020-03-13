@@ -3,6 +3,7 @@
 # Configurations
 export MDNS_SUFFIX=${MDNS_SUFFIX:-'.local'}
 export WEBSOCKET_PATHS=${WEBSOCKET_PATHS:-'cable|sockjs-node|livereload|ws'}
+export MAX_UPLOAD_SIZE=${MAX_UPLOAD_SIZE:-'20m'}
 
 # Sanitize the configurations
 MDNS_SUFFIX=$(echo ".${MDNS_SUFFIX}" | sed 's/\.\.*/./g')
@@ -13,6 +14,8 @@ export MDNS_SUFFIX="${MDNS_SUFFIX}"
 sed -i "s/\${MDNS_SUFFIX}/${MDNS_SUFFIX}/g" \
   /etc/nginx/conf.d/default.conf
 sed -i "s/\${WEBSOCKET_PATHS}/${WEBSOCKET_PATHS}/g" \
+  /etc/nginx/conf.d/default.conf
+sed -i "s/\${MAX_UPLOAD_SIZE}/${MAX_UPLOAD_SIZE}/g" \
   /etc/nginx/conf.d/default.conf
 
 # Start the supervisor
