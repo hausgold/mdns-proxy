@@ -7,8 +7,8 @@ RUN apt-get update -yqqq && \
     avahi-daemon avahi-discover avahi-utils \
     libnss-mdns supervisor curl gnupg
 
-# Install nodejs 10
-RUN curl -sL https://deb.nodesource.com/setup_10.x \
+# Install nodejs 14
+RUN curl -sL https://deb.nodesource.com/setup_14.x \
   | bash - && apt-get install -y nodejs
 
 # Install our own resolver
