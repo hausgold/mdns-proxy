@@ -19,9 +19,9 @@ RUN cd /opt/resolver && npm install
 COPY config/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY config/nginx/502.html /usr/share/nginx/html/
 
-# Copy avahi.sh and nginx.sh
-COPY config/entrypoint config/avahi.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/entrypoint /usr/local/bin/avahi.sh
+# Copy custom scripts
+COPY config/entrypoint config/*.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/*
 
 # Configure supervisord
 COPY config/supervisor/* /etc/supervisor/conf.d/
