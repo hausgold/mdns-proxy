@@ -1,4 +1,4 @@
-FROM nginx:1.13
+FROM nginx:1.24
 MAINTAINER Hermann Mayer <hermann.mayer@hausgold.de>
 
 # Install all required packages
