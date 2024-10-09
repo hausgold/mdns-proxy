@@ -1,5 +1,5 @@
 FROM nginx:1.24
-MAINTAINER Hermann Mayer <hermann.mayer@hausgold.de>
+LABEL org.opencontainers.image.authors="containers@hausgold.de"
 
 # Install all required packages
 RUN apt-get update -yqqq && \
@@ -28,4 +28,4 @@ COPY config/supervisor/* /etc/supervisor/conf.d/
 RUN mkdir -p /var/log/supervisor
 
 # Define the command to run per default
-CMD /usr/local/bin/entrypoint
+CMD ["/usr/local/bin/entrypoint"]
