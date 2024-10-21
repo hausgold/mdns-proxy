@@ -14,11 +14,9 @@ SLEEP ?= sleep
 GREP ?= grep
 EXIT ?= exit
 
-CONTAINER_REGISTRY ?=
-CONTAINER_NAME ?= hausgold/mdns-proxy
-CONTAINER_URI ?= $(CONTAINER_REGISTRY)$(CONTAINER_NAME)
-CONTAINER_URI_DEV ?= $(CONTAINER_URI):dev
-CONTAINER_URI_LATEST ?= $(CONTAINER_URI):latest
+IMAGE_REGISTRY ?=
+IMAGE_NAME ?= hausgold/mdns-proxy
+IMAGE_URI ?= $(IMAGE_REGISTRY)$(IMAGE_NAME):latest
 
 ON_ERROR := $(DOCKER) ps; $(DOCKER) logs mdns-test; $(EXIT) 1;
 
@@ -62,7 +60,7 @@ all:
 
 build: clean
 	# Build the Docker image
-	@$(TIME) $(DOCKER) build --no-cache -t "$(CONTAINER_URI_DEV)" .
+	@$(TIME) $(DOCKER) build --no-cache -t "$(IMAGE_URI)" .
 
 test:
 	# Test the built Docker image
@@ -71,7 +69,7 @@ test:
 	@$(DOCKER) rm -fv mdns-test || true
 	#
 	# Start the built image
-	@$(DOCKER) run --name mdns-test -p 80:80 -d "$(CONTAINER_URI_DEV)"
+	@$(DOCKER) run --name mdns-test -p 80:80 -d "$(IMAGE_URI)"
 	#
 	# Sleep a bit until the service is booted
 	@$(call check-service,localhost:80,$(ON_ERROR))
@@ -82,13 +80,12 @@ test:
 
 publish:
 	# Push the new Docker image to the registry
-	@$(DOCKER) tag "$(CONTAINER_URI_DEV)" "$(CONTAINER_URI_LATEST)"
-	@$(call retry,$(TIME) $(SHELL) -c '$(DOCKER) push $(CONTAINER_URI_LATEST)')
+	@$(call retry,$(TIME) $(SHELL) -c '$(DOCKER) push $(IMAGE_URI)')
 
 shell:
 	# Start an individual test session of the image
-	@$(DOCKER) run --rm -it "$(CONTAINER_URI_DEV)" bash
+	@$(DOCKER) run --rm -it "$(IMAGE_URI)" bash
 
 clean:
 	# Clean the current development snapshot
-	@$(DOCKER) rmi --force "$(CONTAINER_URI_DEV)" || true
+	@$(DOCKER) rmi --force "$(IMAGE_URI)" || true
