@@ -7,8 +7,8 @@ RUN apt-get update -yqqq && \
     avahi-daemon avahi-discover avahi-utils \
     libnss-mdns supervisor curl gnupg
 
-# Install nodejs 16
-RUN curl -sL https://deb.nodesource.com/setup_16.x \
+# Install nodejs 24
+RUN curl -sL https://deb.nodesource.com/setup_24.x \
   | bash - && apt-get install -y nodejs
 
 # Install our own resolver
