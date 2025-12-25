@@ -55,7 +55,7 @@ services:
 
 ## Rebind another external DNS suffix
 
-You can modify the incomming host names by reconfiguring the `MDNS_SUFFIX`
+You can modify the incoming host names by reconfiguring the `MDNS_SUFFIX`
 which defaults to `.local`. This way you can transparently rebind the host to a
 different DNS name. Say you have an AWS EC2 instance with some mDNS-enabled
 containers running and bind an IP to it. Setup an A DNS record for it like
