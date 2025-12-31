@@ -16,14 +16,13 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
     steps:
-      - name: Prepare the virtual environment
-        uses: hausgold/actions/ci@master
+      - name: Prepare the environment
+        uses: hausgold/actions/ci@v2
         with:
           clone_token: '${{ secrets.CLONE_TOKEN }}'
           settings_secret_key: '${{ secrets.SETTINGS_SECRET_KEY }}'
           settings: '${{ github.repository }}'
-          target: ci/noop
-      - uses: actions/checkout@v4
+          target: ci/docker
 
       - name: Build the Docker image
         run: make build
