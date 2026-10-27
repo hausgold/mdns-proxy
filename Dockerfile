@@ -1,4 +1,4 @@
-FROM nginx:1.24
+FROM nginx:1.30
 LABEL org.opencontainers.image.authors="containers@hausgold.de"
 
 # Install all required packages
